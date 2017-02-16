@@ -1,0 +1,34 @@
+<link rel="import" href="../polymer/polymer.html">
+
+<!--
+`lancie-error`
+Element to display error messages
+
+@demo demo/index.html 
+-->
+
+<dom-module id="lancie-error">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]</h2>
+  </template>
+
+  <script>
+    Polymer({
+
+      is: 'lancie-error',
+
+      properties: {
+        prop1: {
+          type: String,
+          value: 'lancie-error',
+        },
+      },
+
+    });
+  </script>
+</dom-module>
