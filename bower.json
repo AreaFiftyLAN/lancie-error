@@ -1,5 +1,6 @@
 {
   "name": "lancie-error",
+  "version": "1.0.0",
   "description": "Element to display error messages",
   "main": "lancie-error.html",
   "dependencies": {
