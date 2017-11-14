@@ -15,8 +15,32 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
     <style>
       :host {
         display: block;
+      }
+
+      .container {
         width: inherit;
         padding: 10px 20px;
+      }
+
+      .green {
+        border-left: 4px solid #4CAF50;
+        background: #C8E6C9;
+        color: #1B5E20;
+      }
+
+      .blue {
+        border-left: 4px solid #2196F3;
+        background: #BBDEFB;
+        color: #0D47A1;
+      }
+
+      .yellow {
+        border-left: 4px solid #FFEB3B;
+        background: #FFF9C4;
+        color: #F57F17;
+      }
+
+      .red {
         border-left: 4px solid #F44336;
         background: #FFCDD2;
         color: #B71C1C;
@@ -27,13 +51,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
       }
     </style>
 
-    <span>[[message]]</span>
+    <div class$="container {{_getClass(type)}}">
+      <span>[[message]]</span>
+    </div>
 
   </template>
   <script>
+  (function() {
   'use strict';
 
-  (function() {
     Polymer({
       is: 'lancie-error',
       properties: {
@@ -43,18 +69,47 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 		      reflectToAttribute: true,
         },
         message: String,
+        type: String,
+      },
+
+      setSuccess: function(message) {
+        this.type = 'success';
+        this.setMessage(message);
+      },
+      
+      setInfo: function(message) {
+        this.type = 'info';
+        this.setMessage(message);
+      },
+
+      setWarning: function(message) {
+        this.type = 'warning';
+        this.setMessage(message);
       },
 
       setError: function(message) {
+        this.type = 'error';
+        this.setMessage(message);
+      },
+
+      setMessage(message) {
         this.message = message;
         this.hidden = false;
-    },
+      },
 
       clear: function() {
         this.message = '';
         this.hidden = true;
-      }
+      },
 
+      _getClass: function(type) {
+        switch (type) {
+          case 'success': return 'green';
+          case 'info': return 'blue';
+          case 'warning': return 'yellow';
+          case 'error': return 'red';
+        }
+      }
     });
   })();
   </script>
